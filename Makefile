@@ -2,7 +2,7 @@ CC = g++
 
 LDLIBS = -lsfml-graphics -lsfml-window -lsfml-system
 
-CFLAGS = -Wall -Wextra
+CXXFLAGS = -Wall -Wextra
 
 CPPFLAGS = -IParticles/inc
 
@@ -15,10 +15,10 @@ NAME = Particles.out
 
 RM = rm -f
 
-$(NAME): all
+all: $(NAME)
 
-all:
-	$(CC) -o $(NAME) $(SRC) $(CFLAGS) $(CPPFLAGS) $(LDLIBS)
+$(NAME):
+	$(CC) -o $(NAME) $(SRC) $(CXXFLAGS) $(CPPFLAGS) $(LDLIBS)
 
 clean:
 	$(RM) $(NAME)

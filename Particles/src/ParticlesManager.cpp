@@ -6,7 +6,9 @@ namespace Particles
 	ParticlesManager::ParticlesManager(sf::Vector2i &&winSize) noexcept
 		: _winSize(std::move(winSize)), _particles(), _image(),
 		_texture(), _sprite()
-	{ }
+	{
+		_texture.create(winSize.x, winSize.y);
+	}
 
 	std::unique_ptr<Spawner> &ParticlesManager::AddSpawner(sf::Vector2i &&pos) noexcept
 	{
