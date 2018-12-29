@@ -20,7 +20,7 @@ namespace Particles
 		sf::Vector2f _pos;
 		float _velocity;
 		float _speed;
-		std::chrono::steady_clock::time_point _startDeltaTime;
+		std::chrono::high_resolution_clock::time_point _startDeltaTime;
 		sf::Color _color;
 	};
 }

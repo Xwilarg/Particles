@@ -21,6 +21,6 @@ namespace Particles
 		sf::Vector2i _pos;
 		sf::Color _color;
 		ParticlesManager &_manager;
-		std::chrono::steady_clock::time_point _startTime;
+		std::chrono::high_resolution_clock::time_point _startTime;
 	};
 }
