@@ -1,5 +1,8 @@
 image: Visual Studio 2017
 
+configuration:
+  - Release
+
 before_build:
 - curl -LO "https://www.sfml-dev.org/files/SFML-2.5.1-windows-vc15-64-bit.zip"
 - 7z e "SFML-2.5.1-windows-vc15-64-bit.zip" -y
