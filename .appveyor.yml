@@ -2,7 +2,7 @@ image: Visual Studio 2017
 
 before_build:
 - curl -LO "https://www.sfml-dev.org/files/SFML-2.5.1-windows-vc15-64-bit.zip"
-- 7z e "SFML-2.5.1.zip"
+- 7z e "SFML-2.5.1-windows-vc15-64-bit.zip" -y
 
 test_script:
 - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
