@@ -30,9 +30,13 @@ namespace Particles
 		_image.create(_winSize.x, _winSize.y, _penImage.getPixelsPtr());
 		for (int i = static_cast<int>(_particles.size() - 1); i >= 0; i--)
 		{
-			_particles[i]->Update();
+			if (!_particles[i]->Update(_penImage, *this))
+			{
+				_particles.erase(_particles.begin() + i);
+				continue;
+			}
 			const sf::Vector2i &pos = static_cast<sf::Vector2i>(_particles[i]->GetPosition());
-			if (!DoesPointExist(pos) || _image.getPixel(pos.x, pos.y) == sf::Color::White)
+			if (_image.getPixel(pos.x, pos.y) == sf::Color::White)
 				_particles.erase(_particles.begin() + i);
 			else
 				_image.setPixel(pos.x, pos.y, _particles[i]->GetColor());

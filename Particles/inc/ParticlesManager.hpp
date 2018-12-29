@@ -22,9 +22,10 @@ namespace Particles
 		void Update() noexcept;
 		void Draw(sf::RenderWindow &window) const noexcept;
 		void DrawWall(const sf::Vector2i &mousePos, bool addWall) noexcept;
+		void DeleteParticle(const Particle &particle) noexcept;
+		bool DoesPointExist(const sf::Vector2i &pos) const noexcept;
 
 	private:
-		bool DoesPointExist(const sf::Vector2i &pos) const noexcept;
 		const sf::Vector2i _winSize;
 		std::vector<std::unique_ptr<Particle>> _particles;
 		std::vector<std::unique_ptr<Spawner>> _spawners;

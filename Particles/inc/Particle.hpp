@@ -2,15 +2,18 @@
 
 # include <SFML/System/Vector2.hpp>
 # include <SFML/Graphics/Color.hpp>
+# include <SFML/Graphics/Image.hpp>
 # include <chrono>
 
 namespace Particles
 {
+	class ParticlesManager;
+
 	class Particle final
 	{
 	public:
 		Particle(const sf::Vector2i &pos) noexcept;
-		void Update() noexcept;
+		bool Update(const sf::Image &_penImage, ParticlesManager &manager) noexcept;
 		void SetColor(sf::Color &&color) noexcept;
 		void SetColor(const sf::Color &color) noexcept;
 		void SetVelocity(float velocity) noexcept;

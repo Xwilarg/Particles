@@ -1,5 +1,6 @@
 #include <utility>
 #include <cmath>
+#include "ParticlesManager.hpp"
 #include "Particle.hpp"
 
 namespace Particles
@@ -10,13 +11,23 @@ namespace Particles
 		_color(sf::Color::White)
 	{ }
 
-	void Particle::Update() noexcept
+	bool Particle::Update(const sf::Image &_penImage, ParticlesManager &manager) noexcept
 	{
 		float deltaTime = (float)(std::chrono::duration<double, std::milli>(std::chrono::high_resolution_clock::now() - _startDeltaTime).count() / 1000.f);
-		_pos = sf::Vector2f(
-			_pos.x + static_cast<float>(std::cos(_velocity)) * deltaTime * _speed,
-			_pos.y + static_cast<float>(std::sin(_velocity)) * deltaTime * _speed
-		);
+		float newXPos = _pos.x + static_cast<float>(std::cos(_velocity)) * deltaTime * _speed;
+		float newYPos = _pos.y + static_cast<float>(std::sin(_velocity)) * deltaTime * _speed;
+		sf::Vector2i newPosInt(static_cast<int>(newXPos), static_cast<int>(newYPos));
+		if (!manager.DoesPointExist(newPosInt))
+			return (false);
+		if (_penImage.getPixel(newPosInt.x, newPosInt.y) != sf::Color::White)
+			_pos = sf::Vector2f(newXPos, newYPos);
+		else if (_penImage.getPixel(newPosInt.x, static_cast<int>(_pos.y)) != sf::Color::White)
+			_pos = sf::Vector2f(newXPos, _pos.y);
+		else if (_penImage.getPixel(static_cast<int>(_pos.x), newPosInt.y) != sf::Color::White)
+			_pos = sf::Vector2f(_pos.x, newYPos);
+		else
+			_pos = sf::Vector2f(_pos.x, _pos.y);
+		return (true);
 	}
 
 	void Particle::SetColor(sf::Color &&color) noexcept
