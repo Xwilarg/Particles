@@ -21,13 +21,17 @@ namespace Particles
 		std::unique_ptr<Particle> &AddParticle(const sf::Vector2i &pos) noexcept;
 		void Update() noexcept;
 		void Draw(sf::RenderWindow &window) const noexcept;
+		void DrawWall(const sf::Vector2i &mousePos, bool addWall) noexcept;
 
 	private:
+		bool DoesPointExist(const sf::Vector2i &pos) const noexcept;
 		const sf::Vector2i _winSize;
 		std::vector<std::unique_ptr<Particle>> _particles;
 		std::vector<std::unique_ptr<Spawner>> _spawners;
 		sf::Image _image;
+		sf::Image _penImage;
 		sf::Texture _texture;
 		sf::Sprite _sprite;
+		const int _penSize;
 	};
 }

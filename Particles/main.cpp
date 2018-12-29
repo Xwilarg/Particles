@@ -2,6 +2,13 @@
 #include <SFML/Graphics.hpp>
 #include "ParticlesManager.hpp"
 
+enum mousePressed
+{
+	Left,
+	Right,
+	None
+};
+
 int main()
 {
 	srand(time(0));
@@ -21,6 +28,8 @@ int main()
 	spawner3->SetColor(sf::Color::Green);
 	spawner3->SetSpawnRate(1.0);
 
+	mousePressed mouse = mousePressed::None;
+
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -28,7 +37,21 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
+			else if (event.type == sf::Event::MouseButtonPressed)
+			{
+				if (event.mouseButton.button == sf::Mouse::Left)
+					mouse = mousePressed::Left;
+				else
+					mouse = mousePressed::Right;
+			}
+			else if (event.type == sf::Event::MouseButtonReleased)
+				mouse = mousePressed::None;
 		}
+
+		if (mouse == mousePressed::Left)
+			manager.DrawWall(sf::Mouse::getPosition(window), true);
+		else if (mouse == mousePressed::Right)
+			manager.DrawWall(sf::Mouse::getPosition(window), false);
 
 		window.clear();
 		manager.Update();
