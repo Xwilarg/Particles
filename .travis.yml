@@ -2,7 +2,10 @@ language:
 - cpp
 addons:
     apt:
+        sources:
+            - ubuntu-toolchain-r-test
         packages:
-            libsfml-dev
+            - libsfml-dev
+            - g++-5
 script:
 - make
