@@ -12,13 +12,13 @@
     <ClCompile Include="main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="ParticulesManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="Particle.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="Spawner.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticlesManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

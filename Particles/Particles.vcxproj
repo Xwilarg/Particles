@@ -119,14 +119,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Particle.cpp" />
-    <ClCompile Include="ParticulesManager.cpp" />
-    <ClCompile Include="Spawner.cpp" />
+    <ClCompile Include="src/Particle.cpp" />
+    <ClCompile Include="src/ParticlesManager.cpp" />
+    <ClCompile Include="src/Spawner.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Particle.hpp" />
-    <ClInclude Include="ParticlesManager.hpp" />
-    <ClInclude Include="Spawner.hpp" />
+    <ClInclude Include="inc/Particle.hpp" />
+    <ClInclude Include="inc/ParticlesManager.hpp" />
+    <ClInclude Include="inc/Spawner.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
