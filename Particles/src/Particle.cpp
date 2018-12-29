@@ -14,14 +14,19 @@ namespace Particles
 	{
 		float deltaTime = (float)(std::chrono::duration<double, std::milli>(std::chrono::high_resolution_clock::now() - _startDeltaTime).count() / 1000.f);
 		_pos = sf::Vector2f(
-			_pos.x + (float)std::cos(_velocity) * deltaTime * _speed,
-			_pos.y + (float)std::sin(_velocity) * deltaTime * _speed
+			_pos.x + static_cast<float>(std::cos(_velocity)) * deltaTime * _speed,
+			_pos.y + static_cast<float>(std::sin(_velocity)) * deltaTime * _speed
 		);
 	}
 
 	void Particle::SetColor(sf::Color &&color) noexcept
 	{
 		_color = std::move(color);
+	}
+
+	void Particle::SetVelocity(float velocity) noexcept
+	{
+		_velocity = velocity;
 	}
 
 	void Particle::SetColor(const sf::Color &color) noexcept

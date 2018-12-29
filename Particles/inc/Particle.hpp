@@ -13,6 +13,7 @@ namespace Particles
 		void Update() noexcept;
 		void SetColor(sf::Color &&color) noexcept;
 		void SetColor(const sf::Color &color) noexcept;
+		void SetVelocity(float velocity) noexcept;
 		const sf::Vector2f &GetPosition() const noexcept;
 		const sf::Color &GetColor() const noexcept;
 

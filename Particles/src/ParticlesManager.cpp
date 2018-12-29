@@ -27,11 +27,14 @@ namespace Particles
 		for (auto &spawner : _spawners)
 			spawner->Update();
 		_image.create(_winSize.x, _winSize.y);
-		for (auto &particle : _particles)
+		for (int i = static_cast<int>(_particles.size() - 1); i >= 0; i--)
 		{
-			particle->Update();
-			const sf::Vector2f &pos = particle->GetPosition();
-			_image.setPixel((int)pos.x, (int)pos.y, sf::Color::White);
+			_particles[i]->Update();
+			const sf::Vector2f &pos = _particles[i]->GetPosition();
+			if (pos.x < 0 || pos.x >= _winSize.x || pos.y < 0 || pos.y >= _winSize.y)
+				_particles.erase(_particles.begin() + i);
+			else
+				_image.setPixel(pos.x, pos.y, _particles[i]->GetColor());
 		}
 		_texture.update(_image);
 		_sprite.setTexture(_texture);
