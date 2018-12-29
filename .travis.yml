@@ -1,5 +1,5 @@
-language:
-- cpp
+language: generic
+env: CXX=g++-5
 addons:
     apt:
         sources:

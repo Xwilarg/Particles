@@ -1,5 +1,3 @@
-CC = g++
-
 LDLIBS = -lsfml-graphics -lsfml-window -lsfml-system
 
 CXXFLAGS = -Wall -Wextra -std=c++14
@@ -18,7 +16,7 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME):
-	$(CC) -o $(NAME) $(SRC) $(CXXFLAGS) $(CPPFLAGS) $(LDLIBS)
+	$(CXX) -o $(NAME) $(SRC) $(CXXFLAGS) $(CPPFLAGS) $(LDLIBS)
 
 clean:
 	$(RM) $(NAME)
