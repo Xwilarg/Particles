@@ -14,7 +14,8 @@ namespace Particles
 	{
 		if (std::chrono::duration<double, std::milli>(std::chrono::high_resolution_clock::now() - _startTime).count() > 100)
 		{
-			_manager.AddParticle(_pos);
+			_manager.AddParticle(_pos)
+				->SetColor(_color);
 			_startTime = std::chrono::high_resolution_clock::now();
 		}
 	}

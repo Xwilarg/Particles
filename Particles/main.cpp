@@ -19,6 +19,8 @@ int main()
 		}
 
 		window.clear();
+		manager.Update();
+		manager.Draw(window);
 		window.display();
 	}
 

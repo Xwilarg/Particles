@@ -1,6 +1,8 @@
 #pragma once
 
 # include <SFML/System/Vector2.hpp>
+# include <SFML/Graphics/Color.hpp>
+# include <chrono>
 
 namespace Particles
 {
@@ -8,9 +10,17 @@ namespace Particles
 	{
 	public:
 		Particle(const sf::Vector2i &pos) noexcept;
+		void Update() noexcept;
+		void SetColor(sf::Color &&color) noexcept;
+		void SetColor(const sf::Color &color) noexcept;
+		const sf::Vector2f &GetPosition() const noexcept;
+		const sf::Color &GetColor() const noexcept;
 
 	private:
-		sf::Vector2i _pos;
-		sf::Vector2f _velocity;
+		sf::Vector2f _pos;
+		float _velocity;
+		float _speed;
+		std::chrono::steady_clock::time_point _startDeltaTime;
+		sf::Color _color;
 	};
 }
