@@ -12,24 +12,24 @@
     <ClCompile Include="main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Particle.cpp">
+    <ClCompile Include="src/ParticlesManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Spawner.cpp">
+    <ClCompile Include="src/Particle.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="ParticlesManager.cpp">
+    <ClCompile Include="src/Spawner.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ParticlesManager.hpp">
+    <ClInclude Include="inc/ParticlesManager.hpp">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="Particle.hpp">
+    <ClInclude Include="inc/Particle.hpp">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="Spawner.hpp">
+    <ClInclude Include="inc/Spawner.hpp">
       <Filter>inc</Filter>
     </ClInclude>
   </ItemGroup>
