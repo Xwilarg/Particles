@@ -1,4 +1,10 @@
+# SFML files
+SFML-*
+
+# Linux executable
 *.out
+
+# SFML dll
 *.dll
 
 ## Ignore Visual Studio temporary files, build results, and
