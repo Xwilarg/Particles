@@ -13,6 +13,7 @@ namespace Particles
 	public:
 		ParticlesManager(sf::Vector2i &&winSize) noexcept;
 		std::unique_ptr<Spawner> &AddSpawner(sf::Vector2i &&pos) noexcept;
+		std::unique_ptr<Particle> &AddParticle(const sf::Vector2i &pos) noexcept;
 		void Update() noexcept;
 
 	private:

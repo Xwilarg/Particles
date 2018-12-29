@@ -7,7 +7,7 @@ namespace Particles
 	class Particle final
 	{
 	public:
-		Particle(sf::Vector2i &&pos) noexcept;
+		Particle(const sf::Vector2i &pos) noexcept;
 
 	private:
 		sf::Vector2i _pos;
