@@ -119,6 +119,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="ParticulesManager.cpp" />
+    <ClCompile Include="Spawner.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Particle.hpp" />
+    <ClInclude Include="ParticlesManager.hpp" />
+    <ClInclude Include="Spawner.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
