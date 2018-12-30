@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
-#include <conio.h>
+#include <cstdio>
 #include <SFML/Graphics.hpp>
 #include "ParticlesManager.hpp"
 
@@ -28,8 +28,8 @@ std::vector<std::string> ParseString(std::string input)
 
 [[noreturn]] void ExitError(std::string msg)
 {
-	std::cerr << msg << "\nPress any key to continue..." << std::endl;
-	_getch();
+	std::cerr << msg << "\nPress enter to continue..." << std::endl;
+	std::getchar();
 	exit(1);
 }
 
