@@ -5,6 +5,11 @@ A small particule renderer made with the SFML
 | -------------- | ------------ |
 | [![Build Status](https://travis-ci.org/Xwilarg/Particles.svg?branch=master)](https://travis-ci.org/Xwilarg/Particles) | [![Build status](https://ci.appveyor.com/api/projects/status/jj47bntivyosii9n/branch/master?svg=true)](https://ci.appveyor.com/project/Xwilarg/particles/branch/master) |
 
+## Controls
+
+Left click: Add walls<br/>
+Right click: Remove walls
+
 ## How to use
 
 ### Linux
