@@ -10,7 +10,18 @@ A small particule renderer made with the SFML
 Left click: Add walls<br/>
 Right click: Remove walls
 
-## How to use
+## Configuration file
+
+Each elements of the configuration file must be separated by one empty space, empty lines and lines starting by '#' are ignored.<br/>
+The file must be called config.txt and be placed near the executable.<br/>
+The first line must contain the width and the height of the window.<br/>
+Each other lines correspond to a particule spawner, for each of them you must provide the following arguments:<br/>
+- Width and height of the spawner
+- Color of the particles spawned
+- Spawn rate in ms
+An example of the file is available [here](https://github.com/Xwilarg/Particles/blob/master/Particles/config.txt).
+
+## How to use from sources
 
 ### Linux
 Download the SFML and run 'make'
