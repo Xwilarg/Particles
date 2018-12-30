@@ -1,0 +1,10 @@
+# Window size
+400 400
+
+# Spawners:
+# Pos(X, Y), Color(R G B) SpawnRate	
+100 100 255 0 0 1.0
+
+150 150 0 0 255 1.0
+
+300 300 0 255 0 1.0

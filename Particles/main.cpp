@@ -1,4 +1,7 @@
 #include <cstdlib>
+#include <fstream>
+#include <iostream>
+#include <conio.h>
 #include <SFML/Graphics.hpp>
 #include "ParticlesManager.hpp"
 
@@ -9,24 +12,63 @@ enum mousePressed
 	None
 };
 
+std::vector<std::string> ParseString(std::string input)
+{
+	std::vector<std::string> allWords;
+
+	int pos;
+	do
+	{
+		pos = input.find(" ");
+		allWords.push_back(input.substr(0, pos));
+		input = input.erase(0, pos + 1);
+	} while (pos != -1);
+	return (allWords);
+}
+
+[[noreturn]] void ExitError(std::string msg)
+{
+	std::cerr << msg << "\nPress any key to continue..." << std::endl;
+	_getch();
+	exit(1);
+}
+
 int main()
 {
 	srand(time(0));
-	constexpr int xWin = 400, yWin = 400;
+	int xWin, yWin;
+
+	std::ifstream file("config.txt");
+	std::string line;
+	std::unique_ptr<Particles::ParticlesManager> manager;
+	bool isWindowInit = false;
+	while (std::getline(file, line))
+	{
+		if (line.length() == 0 || line[0] == '#')
+			continue;
+		std::vector<std::string> allWords = ParseString(line);
+		if (!isWindowInit)
+		{
+			if (allWords.size() != 2)
+				ExitError("Error while parsing configuration file: invalid number of arguments");
+			xWin = std::stoi(allWords[0]);
+			yWin = std::stoi(allWords[1]);
+			manager = std::make_unique<Particles::ParticlesManager>(sf::Vector2i(xWin, yWin));
+			isWindowInit = true;
+		}
+		else
+		{
+			if (allWords.size() != 6)
+				ExitError("Error while parsing configuration file: invalid number of arguments");
+			auto &spawner = manager->AddSpawner(sf::Vector2i(std::stoi(allWords[0]), std::stoi(allWords[1])));
+			spawner->SetColor(sf::Color(std::stoi(allWords[2]), std::stoi(allWords[3]), std::stoi(allWords[4])));
+			spawner->SetSpawnRate(std::stod(allWords[5]));
+		}
+	}
+	if (!isWindowInit)
+		ExitError("Error while parsing configuration file: the file is empty");
+
 	sf::RenderWindow window(sf::VideoMode(xWin, yWin), "Particles");
-	Particles::ParticlesManager manager(sf::Vector2i(xWin, yWin));
-
-	auto &spawner1 = manager.AddSpawner(sf::Vector2i(100, 100));
-	spawner1->SetColor(sf::Color::Red);
-	spawner1->SetSpawnRate(1.0);
-
-	auto &spawner2 = manager.AddSpawner(sf::Vector2i(150, 150));
-	spawner2->SetColor(sf::Color::Blue);
-	spawner2->SetSpawnRate(1.0);
-
-	auto &spawner3 = manager.AddSpawner(sf::Vector2i(300, 300));
-	spawner3->SetColor(sf::Color::Green);
-	spawner3->SetSpawnRate(1.0);
 
 	mousePressed mouse = mousePressed::None;
 
@@ -49,13 +91,13 @@ int main()
 		}
 
 		if (mouse == mousePressed::Left)
-			manager.DrawWall(sf::Mouse::getPosition(window), true);
+			manager->DrawWall(sf::Mouse::getPosition(window), true);
 		else if (mouse == mousePressed::Right)
-			manager.DrawWall(sf::Mouse::getPosition(window), false);
+			manager->DrawWall(sf::Mouse::getPosition(window), false);
 
 		window.clear();
-		manager.Update();
-		manager.Draw(window);
+		manager->Update();
+		manager->Draw(window);
 		window.display();
 	}
 
