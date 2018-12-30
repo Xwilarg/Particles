@@ -7,6 +7,3 @@ before_build:
 - curl -LO https://www.sfml-dev.org/files/SFML-2.5.1-windows-vc15-64-bit.zip
 - unzip SFML-2.5.1-windows-vc15-64-bit.zip
 - mv SFML-2.5.1 SFML
-
-test_script:
-- call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
