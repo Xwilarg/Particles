@@ -1,5 +1,5 @@
 # SFML files
-SFML-*
+SFML/
 
 # Linux executable
 *.out
