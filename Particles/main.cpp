@@ -33,14 +33,10 @@ std::vector<std::string> ParseString(std::string input)
 	exit(1);
 }
 
-int main()
+void LoadConfigFile(int &xWin, int &yWin, std::unique_ptr<Particles::ParticlesManager> &manager)
 {
-	srand(time(0));
-	int xWin, yWin;
-
 	std::ifstream file("config.txt");
 	std::string line;
-	std::unique_ptr<Particles::ParticlesManager> manager;
 	bool isWindowInit = false;
 	while (std::getline(file, line))
 	{
@@ -67,7 +63,24 @@ int main()
 	}
 	if (!isWindowInit)
 		ExitError("Error while parsing configuration file: the file is empty");
+}
 
+int main()
+{
+	srand(time(0));
+	int xWin, yWin;
+	bool isDebugEnabled = false;
+	std::unique_ptr<Particles::ParticlesManager> manager;
+
+	sf::Font font;
+	if (!font.loadFromFile("fonts/Arctik 2.ttf"))
+		ExitError("Can't load font at Font at fonts/Arctik 2.ttf");
+	sf::Text debugText;
+	debugText.setFont(font);
+	debugText.setCharacterSize(12);
+	debugText.setPosition(10.f, 5.f);
+
+	LoadConfigFile(xWin, yWin, manager);
 	sf::RenderWindow window(sf::VideoMode(xWin, yWin), "Particles");
 
 	mousePressed mouse = mousePressed::None;
@@ -88,16 +101,23 @@ int main()
 			}
 			else if (event.type == sf::Event::MouseButtonReleased)
 				mouse = mousePressed::None;
+			else if (event.type == sf::Event::KeyPressed
+				&& event.key.code == sf::Keyboard::Escape)
+				isDebugEnabled = !isDebugEnabled;
 		}
+		window.clear();
 
 		if (mouse == mousePressed::Left)
 			manager->DrawWall(sf::Mouse::getPosition(window), true);
 		else if (mouse == mousePressed::Right)
 			manager->DrawWall(sf::Mouse::getPosition(window), false);
-
-		window.clear();
 		manager->Update();
 		manager->Draw(window);
+		if (isDebugEnabled)
+		{
+			debugText.setString("Particles count: " + std::to_string(manager->GetParticlesCount()));
+			window.draw(debugText);
+		}
 		window.display();
 	}
 

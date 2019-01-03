@@ -22,7 +22,7 @@ namespace Particles
 		void Update() noexcept;
 		void Draw(sf::RenderWindow &window) const noexcept;
 		void DrawWall(const sf::Vector2i &mousePos, bool addWall) noexcept;
-		void DeleteParticle(const Particle &particle) noexcept;
+		size_t GetParticlesCount() const noexcept;
 		bool DoesPointExist(const sf::Vector2i &pos) const noexcept;
 
 	private:

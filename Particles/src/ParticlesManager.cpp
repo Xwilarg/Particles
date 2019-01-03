@@ -74,4 +74,9 @@ namespace Particles
 	{
 		return (pos.x >= 0 && pos.x < _winSize.x && pos.y >= 0 && pos.y < _winSize.y);
 	}
+
+	size_t ParticlesManager::GetParticlesCount() const noexcept
+	{
+		return (_particles.size());
+	}
 }
