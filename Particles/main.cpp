@@ -84,6 +84,9 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(xWin, yWin), "Particles");
 
 	mousePressed mouse = mousePressed::None;
+	sf::Clock frameRate;
+	int lastFramerate = 0;
+	int currFramerate = 0;
 
 	while (window.isOpen())
 	{
@@ -103,7 +106,12 @@ int main()
 				mouse = mousePressed::None;
 			else if (event.type == sf::Event::KeyPressed
 				&& event.key.code == sf::Keyboard::Escape)
+			{
 				isDebugEnabled = !isDebugEnabled;
+				lastFramerate = 0;
+				currFramerate = 0;
+				frameRate.restart();
+			}
 		}
 		window.clear();
 
@@ -115,8 +123,16 @@ int main()
 		manager->Draw(window);
 		if (isDebugEnabled)
 		{
-			debugText.setString("Particles count: " + std::to_string(manager->GetParticlesCount()));
+			debugText.setString("Particles count: " + std::to_string(manager->GetParticlesCount())
+			+ "\nFramerate: " + std::to_string(lastFramerate));
 			window.draw(debugText);
+			currFramerate++;
+			if (frameRate.getElapsedTime().asMilliseconds() > 1000)
+			{
+				lastFramerate = currFramerate;
+				currFramerate = 0;
+				frameRate.restart();
+			}
 		}
 		window.display();
 	}

@@ -8,7 +8,8 @@ A small particule renderer made with the SFML
 ## Controls
 
 Left click: Add walls<br/>
-Right click: Remove walls
+Right click: Remove walls<br/>
+Escape: Display debug infos
 
 ## Configuration file
 
