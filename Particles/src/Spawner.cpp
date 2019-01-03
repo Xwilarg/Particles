@@ -8,17 +8,17 @@ namespace Particles
 {
 	Spawner::Spawner(ParticlesManager &manager, sf::Vector2i &&pos) noexcept
 		: _pos(std::move(pos)), _color(sf::Color::White), _manager(manager),
-		_startTime(std::chrono::high_resolution_clock::now()), _spawnRate(100.0)
+		_clock(), _spawnRate(100.0)
 	{ }
 
 	void Spawner::Update() noexcept
 	{
-		if (std::chrono::duration<double, std::milli>(std::chrono::high_resolution_clock::now() - _startTime).count() > _spawnRate)
+		if (_clock.getElapsedTime().asMilliseconds() > _spawnRate)
 		{
 			auto& particle = _manager.AddParticle(_pos);
 			particle->SetColor(_color);
 			particle->SetVelocity(static_cast<float>(rand() / (2.0 * 3.1415)));
-			_startTime = std::chrono::high_resolution_clock::now();
+			_clock.restart();
 		}
 	}
 

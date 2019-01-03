@@ -3,6 +3,7 @@
 # include <chrono>
 
 # include <SFML/System/Vector2.hpp>
+# include <SFML/System/Clock.hpp>
 # include <SFML/Graphics/Color.hpp>
 
 namespace Particles
@@ -22,7 +23,7 @@ namespace Particles
 		sf::Vector2i _pos;
 		sf::Color _color;
 		ParticlesManager &_manager;
-		std::chrono::high_resolution_clock::time_point _startTime;
+		sf::Clock _clock;
 		double _spawnRate;
 	};
 }
