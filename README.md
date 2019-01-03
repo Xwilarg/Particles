@@ -19,6 +19,7 @@ Each other lines correspond to a particule spawner, for each of them you must pr
 - Width and height of the spawner
 - Color of the particles spawned
 - Spawn rate in ms
+
 An example of the file is available [here](https://github.com/Xwilarg/Particles/blob/master/Particles/config.txt).
 
 ## How to use from sources
