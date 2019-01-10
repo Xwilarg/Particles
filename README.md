@@ -17,7 +17,7 @@ Each elements of the configuration file must be separated by one empty space, em
 The file must be called config.txt and be placed near the executable.<br/>
 The first line must contain the width and the height of the window.<br/>
 Each other lines correspond to a particule spawner, for each of them you must provide the following arguments:<br/>
-- Width and height of the spawner
+- X and Y of the spawner
 - Color of the particles spawned
 - Spawn rate in ms
 
